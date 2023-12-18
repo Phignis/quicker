@@ -1,4 +1,4 @@
-const loadStaticGraphTest = () => {
+const loadStaticGraphJsonTest = () => {
     return JSON.parse(`{
         "graph": {
           "directed": false,
@@ -262,4 +262,34 @@ const loadStaticGraphTest = () => {
           ]
         }
       }`)
+}
+
+const loadStaticGraphClassTest = () => {
+  let toReturn = new Graph(7);
+
+  toReturn.addNewEdge(0, 1, 3);
+  toReturn.addNewEdge(0, 2, 3);
+  toReturn.addNewEdge(0, 5, 3);
+  toReturn.addNewEdge(1, 0, 1);
+  toReturn.addNewEdge(1, 4, 1);
+  toReturn.addNewEdge(2, 0, 2);
+  toReturn.addNewEdge(2, 3, 2);
+  toReturn.addNewEdge(3, 2, 3);
+  toReturn.addNewEdge(3, 4, 2);
+  toReturn.addNewEdge(3, 6, 3);
+  toReturn.addNewEdge(4, 1, 3);
+  toReturn.addNewEdge(4, 3, 4);
+  toReturn.addNewEdge(4, 5, 4);
+  toReturn.addNewEdge(5, 0, 3);
+  toReturn.addNewEdge(5, 4, 2);
+  toReturn.addNewEdge(5, 6, 3);
+  toReturn.addNewEdge(6, 3, 5);
+  toReturn.addNewEdge(6, 5, 5);
+
+  return toReturn;
+}
+
+const getShortestPath = (sourceNode, targetNode) => {
+  const g = loadStaticGraphClassTest();
+  g.getShortestPath(0, 6);
 }
