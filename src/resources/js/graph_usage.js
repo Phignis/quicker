@@ -8,7 +8,7 @@ const loadStaticGraphJsonTest = () => {
             "targetUrl" : "http://url.to.gather.graph"
           },
           "nodes": {
-            "1": {
+            "0": {
               "label": "entry alley",
               "metadata": {
                 "type": "node type",
@@ -17,7 +17,7 @@ const loadStaticGraphJsonTest = () => {
                 ]
               }
             },
-            "2": {
+            "1": {
               "label": "connecting alley",
               "metadata": {
                 "type": "node type",
@@ -25,7 +25,7 @@ const loadStaticGraphJsonTest = () => {
                 ]
               }
             },
-            "3" : {
+            "2" : {
               "label": "promotions alley",
               "metadata": {
                 "type": "node type",
@@ -37,7 +37,7 @@ const loadStaticGraphJsonTest = () => {
                 ]
               }
             },
-            "4" : {
+            "3" : {
               "label": "leftmost alley",
               "metadata": {
                 "type": "node type",
@@ -47,7 +47,7 @@ const loadStaticGraphJsonTest = () => {
                 ]
               }
             },
-            "5" : {
+            "4" : {
               "label": "central alley",
               "metadata": {
                 "type": "node type",
@@ -58,7 +58,7 @@ const loadStaticGraphJsonTest = () => {
                 ]
               }
             },
-            "6" : {
+            "5" : {
               "label": "rightmost alley",
               "metadata": {
                 "type": "node type",
@@ -67,7 +67,7 @@ const loadStaticGraphJsonTest = () => {
                 ]
               }
             },
-            "7" : {
+            "6" : {
               "label": "back alley",
               "metadata": {
                 "type": "node type",
@@ -81,8 +81,8 @@ const loadStaticGraphJsonTest = () => {
           "edges": [
             {
               "relation": "edge relationship",
-              "source": "1",
-              "target": "2",
+              "source": "0",
+              "target": "1",
               "directed": true,
               "metadata": {
                 "direction" : "right",
@@ -91,8 +91,8 @@ const loadStaticGraphJsonTest = () => {
             },
             {
               "relation": "edge relationship",
-              "source": "1",
-              "target": "3",
+              "source": "0",
+              "target": "2",
               "directed": true,
               "metadata": {
                 "direction" : "straight on",
@@ -101,8 +101,8 @@ const loadStaticGraphJsonTest = () => {
             },
             {
               "relation": "edge relationship",
-              "source": "1",
-              "target": "6",
+              "source": "0",
+              "target": "5",
               "directed": true,
               "metadata": {
                 "direction" : "left",
@@ -111,8 +111,18 @@ const loadStaticGraphJsonTest = () => {
             },
             {
               "relation": "edge relationship",
-              "source": "2",
-              "target": "1",
+              "source": "1",
+              "target": "0",
+              "directed": true,
+              "metadata": {
+                "direction" : "straight on",
+                "weight" : 1
+              }
+            },
+            {
+              "relation": "edge relationship",
+              "source": "1",
+              "target": "4",
               "directed": true,
               "metadata": {
                 "direction" : "straight on",
@@ -122,21 +132,31 @@ const loadStaticGraphJsonTest = () => {
             {
               "relation": "edge relationship",
               "source": "2",
-              "target": "5",
+              "target": "0",
               "directed": true,
               "metadata": {
                 "direction" : "straight on",
-                "weight" : 1
+                "weight" : 2
+              }
+            },
+            {
+              "relation": "edge relationship",
+              "source": "2",
+              "target": "3",
+              "directed": true,
+              "metadata": {
+                "direction" : "right",
+                "weight" : 2
               }
             },
             {
               "relation": "edge relationship",
               "source": "3",
-              "target": "1",
+              "target": "2",
               "directed": true,
               "metadata": {
-                "direction" : "straight on",
-                "weight" : 2
+                "direction" : "left",
+                "weight" : 3
               }
             },
             {
@@ -145,8 +165,28 @@ const loadStaticGraphJsonTest = () => {
               "target": "4",
               "directed": true,
               "metadata": {
-                "direction" : "right",
+                "direction" : "left",
                 "weight" : 2
+              }
+            },
+            {
+              "relation": "edge relationship",
+              "source": "3",
+              "target": "6",
+              "directed": true,
+              "metadata": {
+                "direction" : "left",
+                "weight" : 3
+              }
+            },
+            {
+              "relation": "edge relationship",
+              "source": "4",
+              "target": "1",
+              "directed": true,
+              "metadata": {
+                "direction" : "right",
+                "weight" : 3
               }
             },
             {
@@ -155,8 +195,8 @@ const loadStaticGraphJsonTest = () => {
               "target": "3",
               "directed": true,
               "metadata": {
-                "direction" : "left",
-                "weight" : 3
+                "direction" : "straight on",
+                "weight" : 4
               }
             },
             {
@@ -165,24 +205,14 @@ const loadStaticGraphJsonTest = () => {
               "target": "5",
               "directed": true,
               "metadata": {
-                "direction" : "left",
-                "weight" : 2
-              }
-            },
-            {
-              "relation": "edge relationship",
-              "source": "4",
-              "target": "7",
-              "directed": true,
-              "metadata": {
-                "direction" : "left",
-                "weight" : 3
+                "direction" : "straight on",
+                "weight" : 4
               }
             },
             {
               "relation": "edge relationship",
               "source": "5",
-              "target": "2",
+              "target": "0",
               "directed": true,
               "metadata": {
                 "direction" : "right",
@@ -195,8 +225,8 @@ const loadStaticGraphJsonTest = () => {
               "target": "4",
               "directed": true,
               "metadata": {
-                "direction" : "straight on",
-                "weight" : 4
+                "direction" : "right",
+                "weight" : 2
               }
             },
             {
@@ -205,44 +235,14 @@ const loadStaticGraphJsonTest = () => {
               "target": "6",
               "directed": true,
               "metadata": {
-                "direction" : "straight on",
-                "weight" : 4
-              }
-            },
-            {
-              "relation": "edge relationship",
-              "source": "6",
-              "target": "1",
-              "directed": true,
-              "metadata": {
-                "direction" : "right",
-                "weight" : 3
-              }
-            },
-            {
-              "relation": "edge relationship",
-              "source": "6",
-              "target": "5",
-              "directed": true,
-              "metadata": {
-                "direction" : "right",
-                "weight" : 2
-              }
-            },
-            {
-              "relation": "edge relationship",
-              "source": "6",
-              "target": "7",
-              "directed": true,
-              "metadata": {
                 "direction" : "left",
                 "weight" : 3
               }
             },
             {
               "relation": "edge relationship",
-              "source": "7",
-              "target": "4",
+              "source": "6",
+              "target": "3",
               "directed": true,
               "metadata": {
                 "direction" : "left",
@@ -251,8 +251,8 @@ const loadStaticGraphJsonTest = () => {
             },
             {
               "relation": "edge relationship",
-              "source": "7",
-              "target": "6",
+              "source": "6",
+              "target": "5",
               "directed": true,
               "metadata": {
                 "direction" : "right",
@@ -289,7 +289,19 @@ const loadStaticGraphClassTest = () => {
   return toReturn;
 }
 
+const parseGraphFromJsonGraphtest = () => {
+  const jsonGraph = loadStaticGraphJsonTest();
+  const toReturn = new Graph(Object.keys(jsonGraph.graph.nodes).length);
+  
+  jsonGraph.graph.edges.forEach(edge => {
+    toReturn.addNewEdge(Number(edge.source), Number(edge.target), Number(edge.metadata.weight));
+
+  });
+
+  return toReturn;
+}
+
 const getShortestPath = (sourceNode, targetNode) => {
-  const g = loadStaticGraphClassTest();
+  const g = parseGraphFromJsonGraphtest();
   g.getShortestPath(0, 6);
 }
