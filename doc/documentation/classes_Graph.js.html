@@ -1,4 +1,32 @@
-// @ts-check
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: classes/Graph.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: classes/Graph.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// @ts-check
 
 /**
  * Represent an ordered collection, where you can add and retreive in precise order elements.
@@ -10,7 +38,7 @@ class LightestWeightQueue {
     /**
      * encapsulated continuous array, storing all elements, with weight information
      * 
-     * @type {Array.<{element: any, weight: number}>}
+     * @type {Array.&lt;{element: any, weight: number}>}
      * 
      * @access private
      */
@@ -25,7 +53,9 @@ class LightestWeightQueue {
      */
     #ordered;
 
-    /** 
+    /**
+     * @constructor
+     * 
      * Create an empty WeightQueue
      * 
      * @access public
@@ -48,7 +78,7 @@ class LightestWeightQueue {
 
     /**
      * add an element in the collection, ordered by weight
-     * <br /><br />
+     * 
      * Time Complexity : O(1)
      * 
      * @param {any} elementName
@@ -67,7 +97,7 @@ class LightestWeightQueue {
      * 
      * used to order elements by weight in [the array]{@link LightestWeightQueue#orderedElements}.
      * Elements with lightest weights should be at the end, to be retreived when [using pop]{@link LightestWeightQueue#pop}
-     * <br /><br />
+     * 
      * Time complexity : O(n log(n)) (dependant on browsersort algorithm implementation, worst case being 0(n²))
      * 
      * @access private
@@ -107,20 +137,22 @@ class Graph {
      * Store arrays representing edges of the current node (id given by index), 
      * with the id of node to reach, and cost to reach it
      * 
-     * @type {Array.<Array.<{target: number, weight: number}>>}
+     * @type {Array.&lt;Array.&lt;{target: number, weight: number}>>}
      * 
      * @access private
      */
     #nodes;
 
-    /** 
+    /**
+     * @constructor
+     * 
      * Construct a graph with specified number of nodes and no edges defined.
      * 
      * @param {number} nbNodesInGraph 
      */
     constructor(nbNodesInGraph) {
         this.#nodes = Array(nbNodesInGraph); // index represent the node number, it will contain edges
-        for(let i = 0; i < nbNodesInGraph; ++i) {
+        for(let i = 0; i &lt; nbNodesInGraph; ++i) {
             this.#nodes[i] = []; // ready to receive edges for the node
         }
     }
@@ -165,7 +197,7 @@ class Graph {
 
         /**@type {LightestWeightQueue} */
         const navigableNodes = new LightestWeightQueue(); // will store all nodes that we have discovered
-        // store the distance, infinite if not reachable ; number < 0 means already reached
+        // store the distance, infinite if not reachable ; number &lt; 0 means already reached
         const distances = new Array(this.#nodes.length).fill(Infinity);
         /**@type {number[]} */
         const pathToTargetted = [sourceNodeId]; // store the shortest path to target from source
@@ -187,7 +219,7 @@ class Graph {
 
                 this.#nodes[shortestReachableNode.element].forEach(({target, weight}) => {
                     const distanceWithSourceNode = (shortestReachableNode?.weight ?? 0) + weight;
-                    if(distances[target] !== "visited" && distanceWithSourceNode < distances[target]) {
+                    if(distances[target] !== "visited" &amp;&amp; distanceWithSourceNode &lt; distances[target]) {
                         distances[target] = distanceWithSourceNode;
                         navigableNodes.push(target, distances[target]);
                     }
@@ -197,9 +229,31 @@ class Graph {
 
         // just display distance from origin for now
         console.log("Vertex Distance from Source");
-        for (let i = 0; i < this.#nodes.length; ++i) {
+        for (let i = 0; i &lt; this.#nodes.length; ++i) {
             console.log(`${i}\t\t${distances[i] === Infinity ? "Infinity" : -distances[i]}`);
         }
         return pathToTargetted;
     }
-}
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Construct%2520a%2520graph%2520with%2520specified%2520number%2520of%2520nodes%2520and%2520no%2520edges%2520defined..html">Construct a graph with specified number of nodes and no edges defined.</a></li><li><a href="Create%2520an%2520empty%2520WeightQueue.html">Create an empty WeightQueue</a></li><li><a href="Graph.html">Graph</a></li><li><a href="LightestWeightQueue.html">LightestWeightQueue</a></li></ul><h3>Global</h3><ul><li><a href="global.html#loadStaticGraphClassTest">loadStaticGraphClassTest</a></li><li><a href="global.html#loadStaticGraphJsonTest">loadStaticGraphJsonTest</a></li><li><a href="global.html#parseGraphFromJsonGraphtest">parseGraphFromJsonGraphtest</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Dec 28 2023 09:04:53 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
