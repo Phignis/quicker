@@ -318,5 +318,10 @@ const parseGraphFromJsonGraphtest = () => {
 
 const getShortestPath = (sourceNode, targetNode) => {
   const g = parseGraphFromJsonGraphtest();
-  g.getShortestPath(sourceNode, targetNode);
+  // @ts-ignore
+  let sourceId = Number(document.getElementById("sourceNodeId")?.value);
+  // @ts-ignore
+  let targetId = Number(document.getElementById("targettedNodeId")?.value);
+  console.log("shortest path from node " + sourceId + " to node " + targetId)
+  console.log(g.getShortestPath(sourceId, targetId));
 }
