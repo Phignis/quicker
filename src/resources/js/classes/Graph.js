@@ -1,7 +1,7 @@
 // @ts-check
 
 /**
- * Represent an ordered collection, where you can add and retreive in precise order elements.
+ * Represent an ordered collection, where you can add and retreive in precise order elements.<br />
  * Items of the collection [will be retreived]{@link LightestWeightQueue#pop} by weight
  * [specified when added]{@link LightestWeightQueue#push}.
  */
@@ -83,7 +83,7 @@ class LightestWeightQueue {
 
     /**
      * Retreive and give back the element with the lightest weight of the collection, removing it from the collection.
-     * 
+     * <br /><br />
      * Time complexity : 0(n log(n)) if sorting is needed, else O(1).
      * 
      * @returns {{element : any, weight : number} | null} The element removed with lightest weight possible, or null if the collection is empty
@@ -111,7 +111,26 @@ class Graph {
      * 
      * @access private
      */
-    #nodes;
+    #nodesEdges;
+
+    /**
+     * Store arrays representing categories of product available in the current node (id given by index)
+     * 
+     * @type {Array.<Array.<string>>}
+     * 
+     * @access private
+     */
+    #nodesProductsCategories;
+
+    /**
+     * store nodes id which have entries
+     */
+    #entries;
+
+    /**
+     * store nodes id which have exists
+     */
+    #exits;
 
     /** 
      * Construct a graph with specified number of nodes and no edges defined.
@@ -119,9 +138,13 @@ class Graph {
      * @param {number} nbNodesInGraph 
      */
     constructor(nbNodesInGraph) {
-        this.#nodes = Array(nbNodesInGraph); // index represent the node number, it will contain edges
+        this.#nodesEdges = []; // index represent the node number, it will contain edges
+        this.#nodesProductsCategories = [];
+        this.#entries = [];
+        this.#exits = [];
         for(let i = 0; i < nbNodesInGraph; ++i) {
-            this.#nodes[i] = []; // ready to receive edges for the node
+            this.#nodesEdges[i] = []; // ready to receive edges for the node
+            this.#nodesProductsCategories[i] = [];
         }
     }
 
@@ -131,42 +154,88 @@ class Graph {
      * 
      * @param {number} sourceNodeId id of the source node, from where directed edge is starting
      * @param {number} targettedNodeId id of the target node, where directed edge is ending
-     * @param {number} weight cost to take the edge
+     * @param {number} weight cost to go to target node using the edge
      * @returns {boolean} true if edge was added, else false, for example if you try to add edge to 
      * non-existing edge, which are specified [in the constructor]{@link WeightQueue#constructor}
      * 
      * @access public
      */
     addNewEdge(sourceNodeId, targettedNodeId, weight) {
-        if(sourceNodeId >= this.#nodes.length) {
+        if(sourceNodeId >= this.#nodesEdges.length) {
             return false;
         }
-        this.#nodes[sourceNodeId].push({target : targettedNodeId, weight : weight});
+        this.#nodesEdges[sourceNodeId].push({target : targettedNodeId, weight : weight});
         return true;
+    }
+
+    /**
+     * Set categories of ressources available for a given node
+     * 
+     * @param {number} nodeId id of the node which categories are for 
+     * @param {Array.<String>} categoriesToSet categories of ressource available to add
+     * 
+     * @returns {boolean} true if categories where added, false if node does not exists in current graph
+     */
+    addCategoriesFor(nodeId, categoriesToSet) {
+        if(nodeId < this.#nodesEdges.length) {
+            this.#nodesProductsCategories[nodeId] = this.#nodesProductsCategories[nodeId].concat(categoriesToSet);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * add an entry to graph
+     * 
+     * @param {number} entryNode id of the node where you can enter in the building
+     * 
+     * @returns {boolean} true if exit is added, false if entry node id given does not exists in graph
+     */
+    addEntry(entryNode) {
+        if(entryNode < this.#nodesEdges.length) {
+            this.#entries.push(entryNode);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * add an exit to graph
+     * 
+     * @param {number} exitNode id of the node where you can exit in the building
+     * 
+     * @returns {boolean} true if exit is added, false if exit node id given does not exists in graph
+     */
+    addExit(exitNode) {
+        if(exitNode < this.#nodesEdges.length) {
+            this.#exits.push(exitNode);
+            return true;
+        }
+        return false;
     }
     
     /**
      * allows you to retreive a list of nodes to navigate from source to targetted node.
-     * This list will represent the shortest path possible in the graph
+     * This list will represent the shortest path possible in the graph.<br /><br />
      * 
      * Time complexity : O((v + e) log(n)) where v is the number of nodes, and e the number of edge
      * 
      * @param {number} sourceNodeId id of the node where the shortest path will start
      * @param {number} targettedNodeId id of the node where the shortest path will end
      * 
-     * @returns {number[] | false} list of array to visit (in order) to get shortest path,
-     *  false if specified node ids doesn't exists in current graph
+     * @returns {number[] | false} list of array to visit (in order) to get shortest path<br/>
+     *  false if specified node ids doesn't exists in current graph<br />
      *  list will be empty if target and source node exists, but there's no path possible
      */
     getShortestPath(sourceNodeId, targettedNodeId) {
-        if(sourceNodeId >= this.#nodes.length || targettedNodeId >= this.#nodes.length) {
+        if(sourceNodeId >= this.#nodesEdges.length || targettedNodeId >= this.#nodesEdges.length) {
             return false;
         }
 
         /**@type {LightestWeightQueue} */
         const navigableNodes = new LightestWeightQueue(); // will store all nodes that we have discovered
         // store the distance, infinite if not reachable ; number < 0 means already reached
-        const distances = new Array(this.#nodes.length).fill(Infinity);
+        const distances = new Array(this.#nodesEdges.length).fill(Infinity);
         /**@type {number[]} */
         const pathToTargetted = [sourceNodeId]; // store the shortest path to target from source
 
@@ -185,7 +254,7 @@ class Graph {
             if(distances[shortestReachableNode.element] >= 0) {
                 distances[shortestReachableNode.element] = -distances[shortestReachableNode.element]; // to not visit again edge
 
-                this.#nodes[shortestReachableNode.element].forEach(({target, weight}) => {
+                this.#nodesEdges[shortestReachableNode.element].forEach(({target, weight}) => {
                     const distanceWithSourceNode = (shortestReachableNode?.weight ?? 0) + weight;
                     if(distances[target] !== "visited" && distanceWithSourceNode < distances[target]) {
                         distances[target] = distanceWithSourceNode;
@@ -197,7 +266,7 @@ class Graph {
 
         // just display distance from origin for now
         console.log("Vertex Distance from Source");
-        for (let i = 0; i < this.#nodes.length; ++i) {
+        for (let i = 0; i < this.#nodesEdges.length; ++i) {
             console.log(`${i}\t\t${distances[i] === Infinity ? "Infinity" : -distances[i]}`);
         }
         return pathToTargetted;

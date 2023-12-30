@@ -2,13 +2,13 @@
 
 /**
  * return expected graph from defined graph in documentation, as an example
- * 
+ * later, a API could be implemented to give back the json of choosen building
  * @returns {Object} expected graph, litteraly from JSON
  */
 const loadStaticGraphJsonTest = () => {
     return JSON.parse(`{
         "graph": {
-          "directed": false,
+          "directed": true,
           "type": "graph type",
           "label": "grocery_image_example graph",
           "metadata" : {
@@ -21,7 +21,9 @@ const loadStaticGraphJsonTest = () => {
                 "type": "node type",
                 "availableProducts" : [
                   "cleaning products"
-                ]
+                ],
+                "entry": true,
+                "exit": true
               }
             },
             "1": {
@@ -300,23 +302,8 @@ const loadStaticGraphClassTest = () => {
   return toReturn;
 }
 
-/**
- * 
- * @returns {Graph} parsed from json by [this function]{@link loadStaticGraphJsonTest} and transphormed in Graph
- */
-const parseGraphFromJsonGraphtest = () => {
-  const jsonGraph = loadStaticGraphJsonTest();
-  const toReturn = new Graph(Object.keys(jsonGraph.graph.nodes).length);
-  
-  jsonGraph.graph.edges.forEach(edge => {
-    toReturn.addNewEdge(Number(edge.source), Number(edge.target), Number(edge.metadata.weight));
-
-  });
-
-  return toReturn;
-}
-
 const getShortestPath = (sourceNode, targetNode) => {
-  const g = parseGraphFromJsonGraphtest();
-  g.getShortestPath(sourceNode, targetNode);
+  const g = GraphBuilder.getInstanceForJsonGraph().createGraph(loadStaticGraphJsonTest());
+  console.log(g);
+  g?.getShortestPath(sourceNode, targetNode);
 }
