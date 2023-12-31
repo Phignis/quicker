@@ -112,54 +112,6 @@
     </tbody>
 </table>
 
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>nbNodesInGraph</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
 
 
 
@@ -374,7 +326,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="classes_Graph.js.html">classes/Graph.js</a>, <a href="classes_Graph.js.html#line179">line 179</a>
+        <a href="classes_Graph.js.html">classes/Graph.js</a>, <a href="classes_Graph.js.html#line180">line 180</a>
     </li></ul></dd>
     
 
@@ -533,7 +485,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="classes_Graph.js.html">classes/Graph.js</a>, <a href="classes_Graph.js.html#line194">line 194</a>
+        <a href="classes_Graph.js.html">classes/Graph.js</a>, <a href="classes_Graph.js.html#line195">line 195</a>
     </li></ul></dd>
     
 
@@ -692,7 +644,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="classes_Graph.js.html">classes/Graph.js</a>, <a href="classes_Graph.js.html#line209">line 209</a>
+        <a href="classes_Graph.js.html">classes/Graph.js</a>, <a href="classes_Graph.js.html#line210">line 210</a>
     </li></ul></dd>
     
 
@@ -758,8 +710,7 @@
 
 
 <div class="description">
-    Add edge for source node, if possible, with a given target node and a weight
-Give back information if edge was added or not
+    Add edge for source node, if possible, with a given target node and a weightGive back information if edge was added or not
 </div>
 
 
@@ -898,7 +849,7 @@ Give back information if edge was added or not
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="classes_Graph.js.html">classes/Graph.js</a>, <a href="classes_Graph.js.html#line141">line 141</a>
+        <a href="classes_Graph.js.html">classes/Graph.js</a>, <a href="classes_Graph.js.html#line164">line 164</a>
     </li></ul></dd>
     
 
@@ -927,8 +878,7 @@ Give back information if edge was added or not
 
         
 <div class="param-desc">
-    true if edge was added, else false, for example if you try to add edge to 
-non-existing edge, which are specified in the constructor
+    true if edge was added, else false, for example if you try to add edge to non-existing edge, which are specified in the constructor
 </div>
 
 
@@ -957,7 +907,7 @@ non-existing edge, which are specified in the constructor
     
 
     
-    <h4 class="name" id="getShortestPath"><span class="type-signature"></span>getShortestPath<span class="signature">(sourceNodeId, targettedNodeId)</span><span class="type-signature"> &rarr; {Array.&lt;number>|boolean}</span></h4>
+    <h4 class="name" id="getShortestPath"><span class="type-signature"></span>getShortestPath<span class="signature">(sourceNodeId, targettedNodeId)</span><span class="type-signature"> &rarr; {Array.&lt;number>|false}</span></h4>
     
 
     
@@ -965,11 +915,7 @@ non-existing edge, which are specified in the constructor
 
 
 <div class="description">
-    allows you to retreive a list of nodes to navigate from source to targetted node.
-This list will represent the shortest path possible in the graph.<br /><br />
-
-Time complexity : O((v + e) log(n)) where v is the number of nodes, and e the number of edge
-
+    allows you to retreive a list of nodes to navigate from source to targetted node.This list will represent the shortest path possible in the graph.<br /><br />Time complexity : O((v + e) log(v)) where v is the number of nodes, and e the number of edge
 </div>
 
 
@@ -1085,8 +1031,7 @@ Time complexity : O((v + e) log(n)) where v is the number of nodes, and e the nu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="classes_Graph.js.html">classes/Graph.js</a>, <a href="classes_Graph.js.html#line230">line 230</a>
-
+        <a href="classes_Graph.js.html">classes/Graph.js</a>, <a href="classes_Graph.js.html#line256">line 256</a>
     </li></ul></dd>
     
 
@@ -1115,9 +1060,7 @@ Time complexity : O((v + e) log(n)) where v is the number of nodes, and e the nu
 
         
 <div class="param-desc">
-    list of array to visit (in order) to get shortest path<br/>
- false if specified node ids doesn't exists in current graph<br />
- list will be empty if target and source node exists, but there's no path possible
+    list of array to visit (in order) to get shortest path<br/> false if specified node ids doesn't exists in current graph<br /> list will be empty if target and source node exists, but there's no path possible
 </div>
 
 
@@ -1131,7 +1074,7 @@ Time complexity : O((v + e) log(n)) where v is the number of nodes, and e the nu
 <span class="param-type">Array.&lt;number></span>
 |
 
-<span class="param-type">boolean</span>
+<span class="param-type">false</span>
 
 
     </dd>
@@ -1160,14 +1103,12 @@ Time complexity : O((v + e) log(n)) where v is the number of nodes, and e the nu
 
 <nav>
     <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Graph.html">Graph</a></li><li><a href="GraphBuilder.html">GraphBuilder</a></li><li><a href="LightestWeightQueue.html">LightestWeightQueue</a></li></ul><h3>Global</h3><ul><li><a href="global.html#loadStaticGraphClassTest">loadStaticGraphClassTest</a></li><li><a href="global.html#loadStaticGraphJsonTest">loadStaticGraphJsonTest</a></li></ul>
-
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sat Dec 30 2023 10:47:08 GMT+0100 (heure normale d’Europe centrale)
-
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Dec 31 2023 11:57:19 GMT+0100 (heure normale d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -302,13 +302,16 @@ const loadStaticGraphClassTest = () => {
   return toReturn;
 }
 
+const parseGraphFromJsonGraphtest = () => {
+  console.log(GraphBuilder.getInstanceForJsonGraph().createGraph(loadStaticGraphJsonTest()));
+}
+
 const getShortestPath = (sourceNode, targetNode) => {
   const g = GraphBuilder.getInstanceForJsonGraph().createGraph(loadStaticGraphJsonTest());
-  console.log(g);
   // @ts-ignore
   let sourceId = Number(document.getElementById("sourceNodeId")?.value);
   // @ts-ignore
   let targetId = Number(document.getElementById("targettedNodeId")?.value);
   console.log("shortest path from node " + sourceId + " to node " + targetId)
-  console.log(g.getShortestPath(sourceId, targetId));
+  console.log(g?.getShortestPath(sourceId, targetId));
 }

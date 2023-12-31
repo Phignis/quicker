@@ -223,7 +223,7 @@ class Graph {
      * @param {number[]} precedessorOfEachNodes the predecessing node of each node (given by index).
      * -2 means it's the source node, -1 means no predecessor where found
      * 
-     * @returns {number[] | boolean} the shortest path in a list, or false if shortest path is not possible
+     * @returns {number[] | false} the shortest path in a list, or false if shortest path is not possible
      * 
      * @access private
      */
@@ -268,7 +268,7 @@ class Graph {
       
         // store the predecessor of each nodes, when discovered
         /**@type {number[]} */
-        const predecessorNode = new Array(this.#nodes.length).fill(-1);
+        const predecessorNode = new Array(this.#nodesEdges.length).fill(-1);
 
         navigableNodes.push(sourceNodeId, 0);
         distances[sourceNodeId] = 0;

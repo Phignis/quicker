@@ -161,7 +161,6 @@ class Graph {
      */
     #exits;
 
-
     /** 
      * Construct a graph with specified number of nodes and no edges defined.
      * 
@@ -199,7 +198,52 @@ class Graph {
     }
 
     /**
+     * Set categories of ressources available for a given node
+     * 
+     * @param {number} nodeId id of the node which categories are for 
+     * @param {Array.&lt;String>} categoriesToSet categories of ressource available to add
+     * 
+     * @returns {boolean} true if categories where added, false if node does not exists in current graph
+     */
+    addCategoriesFor(nodeId, categoriesToSet) {
+        if(nodeId &lt; this.#nodesEdges.length) {
+            this.#nodesProductsCategories[nodeId] = this.#nodesProductsCategories[nodeId].concat(categoriesToSet);
+            return true;
+        }
+        return false;
+    }
 
+    /**
+     * add an entry to graph
+     * 
+     * @param {number} entryNode id of the node where you can enter in the building
+     * 
+     * @returns {boolean} true if exit is added, false if entry node id given does not exists in graph
+     */
+    addEntry(entryNode) {
+        if(entryNode &lt; this.#nodesEdges.length) {
+            this.#entries.push(entryNode);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * add an exit to graph
+     * 
+     * @param {number} exitNode id of the node where you can exit in the building
+     * 
+     * @returns {boolean} true if exit is added, false if exit node id given does not exists in graph
+     */
+    addExit(exitNode) {
+        if(exitNode &lt; this.#nodesEdges.length) {
+            this.#exits.push(exitNode);
+            return true;
+        }
+        return false;
+    }
+  
+    /**
      * create the array containing, in order, all nodes to visit from a source node to a given targetted node
      * could return false if at some point, path end up on a node without any predecessor.
      * 
@@ -207,7 +251,7 @@ class Graph {
      * @param {number[]} precedessorOfEachNodes the predecessing node of each node (given by index).
      * -2 means it's the source node, -1 means no predecessor where found
      * 
-     * @returns {number[] | boolean} the shortest path in a list, or false if shortest path is not possible
+     * @returns {number[] | false} the shortest path in a list, or false if shortest path is not possible
      * 
      * @access private
      */
@@ -226,8 +270,8 @@ class Graph {
     
     /**
      * allows you to retreive a list of nodes to navigate from source to targetted node.
-     * This list will represent the shortest path possible in the graph.&lt;br />&lt;br />
-     * 
+     * This list will represent the shortest path possible in the graph.
+     * &lt;br />&lt;br />
      * Time complexity : O((v + e) log(v)) where v is the number of nodes, and e the number of edge
      * 
      * @param {number} sourceNodeId id of the node where the shortest path will start
@@ -235,7 +279,6 @@ class Graph {
      * 
      * @returns {number[] | false} list of array to visit (in order) to get shortest path&lt;br/>
      *  false if specified node ids doesn't exists in current graph&lt;br />
-
      *  list will be empty if target and source node exists, but there's no path possible
      */
     getShortestPath(sourceNodeId, targettedNodeId) {
@@ -250,9 +293,10 @@ class Graph {
 
         // store the distance, infinite if not reachable ; number &lt; 0 means already reached
         const distances = new Array(this.#nodesEdges.length).fill(Infinity);
-
+      
+        // store the predecessor of each nodes, when discovered
         /**@type {number[]} */
-        const predecessorNode = new Array(this.#nodes.length).fill(-1);
+        const predecessorNode = new Array(this.#nodesEdges.length).fill(-1);
 
         navigableNodes.push(sourceNodeId, 0);
         distances[sourceNodeId] = 0;
@@ -281,13 +325,9 @@ class Graph {
                 });
             }
         }
-        // just display distance from origin for now
-        console.log("Vertex Distance from Source");
-        for (let i = 0; i &lt; this.#nodesEdges.length; ++i) {
-            console.log(`${i}\t\t${distances[i] === Infinity ? "Infinity" : -distances[i]}`);
-        }
-        return pathToTargetted;
-
+      
+        // if we reach end of navigables nodes, we didn't found the targetted node and explored the whole graph from source node
+        return [];
     }
 }</code></pre>
         </article>
@@ -300,14 +340,12 @@ class Graph {
 
 <nav>
     <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Graph.html">Graph</a></li><li><a href="GraphBuilder.html">GraphBuilder</a></li><li><a href="LightestWeightQueue.html">LightestWeightQueue</a></li></ul><h3>Global</h3><ul><li><a href="global.html#loadStaticGraphClassTest">loadStaticGraphClassTest</a></li><li><a href="global.html#loadStaticGraphJsonTest">loadStaticGraphJsonTest</a></li></ul>
-
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sat Dec 30 2023 10:47:08 GMT+0100 (heure normale d’Europe centrale)
-
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Dec 31 2023 11:57:19 GMT+0100 (heure normale d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>
