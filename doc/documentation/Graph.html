@@ -202,6 +202,506 @@
     
 
     
+    <h4 class="name" id="addCategoriesFor"><span class="type-signature"></span>addCategoriesFor<span class="signature">(nodeId, categoriesToSet)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Set categories of ressources available for a given node
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>nodeId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">id of the node which categories are for</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>categoriesToSet</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;String></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">categories of ressource available to add</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_Graph.js.html">classes/Graph.js</a>, <a href="classes_Graph.js.html#line180">line 180</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    true if categories where added, false if node does not exists in current graph
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="addEntry"><span class="type-signature"></span>addEntry<span class="signature">(entryNode)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    add an entry to graph
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>entryNode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">id of the node where you can enter in the building</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_Graph.js.html">classes/Graph.js</a>, <a href="classes_Graph.js.html#line195">line 195</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    true if exit is added, false if entry node id given does not exists in graph
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="addExit"><span class="type-signature"></span>addExit<span class="signature">(exitNode)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    add an exit to graph
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>exitNode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">id of the node where you can exit in the building</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_Graph.js.html">classes/Graph.js</a>, <a href="classes_Graph.js.html#line210">line 210</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    true if exit is added, false if exit node id given does not exists in graph
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="addNewEdge"><span class="type-signature"></span>addNewEdge<span class="signature">(sourceNodeId, targettedNodeId, weight)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
     
 
@@ -308,7 +808,7 @@
 
             
 
-            <td class="description last">cost to take the edge</td>
+            <td class="description last">cost to go to target node using the edge</td>
         </tr>
 
     
@@ -349,7 +849,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="classes_Graph.js.html">classes/Graph.js</a>, <a href="classes_Graph.js.html#line141">line 141</a>
+        <a href="classes_Graph.js.html">classes/Graph.js</a>, <a href="classes_Graph.js.html#line164">line 164</a>
     </li></ul></dd>
     
 
@@ -407,7 +907,7 @@
     
 
     
-    <h4 class="name" id="getShortestPath"><span class="type-signature"></span>getShortestPath<span class="signature">(sourceNodeId, targettedNodeId)</span><span class="type-signature"> &rarr; {Array.&lt;number>|boolean}</span></h4>
+    <h4 class="name" id="getShortestPath"><span class="type-signature"></span>getShortestPath<span class="signature">(sourceNodeId, targettedNodeId)</span><span class="type-signature"> &rarr; {Array.&lt;number>|false}</span></h4>
     
 
     
@@ -415,7 +915,7 @@
 
 
 <div class="description">
-    allows you to retreive a list of nodes to navigate from source to targetted node.This list will represent the shortest path possible in the graph, orderedTime complexity : O((v + e) log(v)) where v is the number of nodes, and e the number of edge
+    allows you to retreive a list of nodes to navigate from source to targetted node.This list will represent the shortest path possible in the graph.<br /><br />Time complexity : O((v + e) log(v)) where v is the number of nodes, and e the number of edge
 </div>
 
 
@@ -531,7 +1031,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="classes_Graph.js.html">classes/Graph.js</a>, <a href="classes_Graph.js.html#line187">line 187</a>
+        <a href="classes_Graph.js.html">classes/Graph.js</a>, <a href="classes_Graph.js.html#line256">line 256</a>
     </li></ul></dd>
     
 
@@ -560,7 +1060,7 @@
 
         
 <div class="param-desc">
-    list of array to visit (in order) to get shortest path, false if specified node ids doesn't exists in current graph list will be empty if target and source node exists, but there's no path possible
+    list of array to visit (in order) to get shortest path<br/> false if specified node ids doesn't exists in current graph<br /> list will be empty if target and source node exists, but there's no path possible
 </div>
 
 
@@ -574,7 +1074,7 @@
 <span class="param-type">Array.&lt;number></span>
 |
 
-<span class="param-type">boolean</span>
+<span class="param-type">false</span>
 
 
     </dd>
@@ -602,13 +1102,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Graph.html">Graph</a></li><li><a href="LightestWeightQueue.html">LightestWeightQueue</a></li></ul><h3>Global</h3><ul><li><a href="global.html#loadStaticGraphClassTest">loadStaticGraphClassTest</a></li><li><a href="global.html#loadStaticGraphJsonTest">loadStaticGraphJsonTest</a></li><li><a href="global.html#parseGraphFromJsonGraphtest">parseGraphFromJsonGraphtest</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Graph.html">Graph</a></li><li><a href="GraphBuilder.html">GraphBuilder</a></li><li><a href="LightestWeightQueue.html">LightestWeightQueue</a></li></ul><h3>Global</h3><ul><li><a href="global.html#loadStaticGraphClassTest">loadStaticGraphClassTest</a></li><li><a href="global.html#loadStaticGraphJsonTest">loadStaticGraphJsonTest</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Dec 29 2023 22:42:39 GMT+0100 (heure normale d’Europe centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Dec 31 2023 11:57:19 GMT+0100 (heure normale d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>
