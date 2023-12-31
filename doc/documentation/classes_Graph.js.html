@@ -1,7 +1,35 @@
-// @ts-check
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: classes/Graph.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: classes/Graph.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// @ts-check
 
 /**
- * Represent an ordered collection, where you can add and retreive in precise order elements.<br />
+ * Represent an ordered collection, where you can add and retreive in precise order elements.&lt;br />
  * Items of the collection [will be retreived]{@link LightestWeightQueue#pop} by weight
  * [specified when added]{@link LightestWeightQueue#push}.
  */
@@ -10,7 +38,7 @@ class LightestWeightQueue {
     /**
      * encapsulated continuous array, storing all elements, with weight information
      * 
-     * @type {Array.<{element: any, weight: number}>}
+     * @type {Array.&lt;{element: any, weight: number}>}
      * 
      * @access private
      */
@@ -48,7 +76,7 @@ class LightestWeightQueue {
 
     /**
      * add an element in the collection, ordered by weight
-     * <br /><br />
+     * &lt;br />&lt;br />
      * Time Complexity : O(1)
      * 
      * @param {any} elementName
@@ -67,7 +95,7 @@ class LightestWeightQueue {
      * 
      * used to order elements by weight in [the array]{@link LightestWeightQueue#orderedElements}.
      * Elements with lightest weights should be at the end, to be retreived when [using pop]{@link LightestWeightQueue#pop}
-     * <br /><br />
+     * &lt;br />&lt;br />
      * Time complexity : O(n log(n)) (dependant on browsersort algorithm implementation, worst case being 0(n²))
      * 
      * @access private
@@ -83,7 +111,7 @@ class LightestWeightQueue {
 
     /**
      * Retreive and give back the element with the lightest weight of the collection, removing it from the collection.
-     * <br /><br />
+     * &lt;br />&lt;br />
      * Time complexity : 0(n log(n)) if sorting is needed, else O(1).
      * 
      * @returns {{element : any, weight : number} | null} The element removed with lightest weight possible, or null if the collection is empty
@@ -107,7 +135,7 @@ class Graph {
      * Store arrays representing edges of the current node (id given by index), 
      * with the id of node to reach, and cost to reach it
      * 
-     * @type {Array.<Array.<{target: number, weight: number}>>}
+     * @type {Array.&lt;Array.&lt;{target: number, weight: number}>>}
      * 
      * @access private
      */
@@ -116,7 +144,7 @@ class Graph {
     /**
      * Store arrays representing categories of product available in the current node (id given by index)
      * 
-     * @type {Array.<Array.<string>>}
+     * @type {Array.&lt;Array.&lt;string>>}
      * 
      * @access private
      */
@@ -142,7 +170,7 @@ class Graph {
         this.#nodesProductsCategories = [];
         this.#entries = [];
         this.#exits = [];
-        for(let i = 0; i < nbNodesInGraph; ++i) {
+        for(let i = 0; i &lt; nbNodesInGraph; ++i) {
             this.#nodesEdges[i] = []; // ready to receive edges for the node
             this.#nodesProductsCategories[i] = [];
         }
@@ -172,12 +200,12 @@ class Graph {
      * Set categories of ressources available for a given node
      * 
      * @param {number} nodeId id of the node which categories are for 
-     * @param {Array.<String>} categoriesToSet categories of ressource available to add
+     * @param {Array.&lt;String>} categoriesToSet categories of ressource available to add
      * 
      * @returns {boolean} true if categories where added, false if node does not exists in current graph
      */
     addCategoriesFor(nodeId, categoriesToSet) {
-        if(nodeId < this.#nodesEdges.length) {
+        if(nodeId &lt; this.#nodesEdges.length) {
             this.#nodesProductsCategories[nodeId] = this.#nodesProductsCategories[nodeId].concat(categoriesToSet);
             return true;
         }
@@ -192,7 +220,7 @@ class Graph {
      * @returns {boolean} true if exit is added, false if entry node id given does not exists in graph
      */
     addEntry(entryNode) {
-        if(entryNode < this.#nodesEdges.length) {
+        if(entryNode &lt; this.#nodesEdges.length) {
             this.#entries.push(entryNode);
             return true;
         }
@@ -207,7 +235,7 @@ class Graph {
      * @returns {boolean} true if exit is added, false if exit node id given does not exists in graph
      */
     addExit(exitNode) {
-        if(exitNode < this.#nodesEdges.length) {
+        if(exitNode &lt; this.#nodesEdges.length) {
             this.#exits.push(exitNode);
             return true;
         }
@@ -216,15 +244,15 @@ class Graph {
     
     /**
      * allows you to retreive a list of nodes to navigate from source to targetted node.
-     * This list will represent the shortest path possible in the graph.<br /><br />
+     * This list will represent the shortest path possible in the graph.&lt;br />&lt;br />
      * 
      * Time complexity : O((v + e) log(n)) where v is the number of nodes, and e the number of edge
      * 
      * @param {number} sourceNodeId id of the node where the shortest path will start
      * @param {number} targettedNodeId id of the node where the shortest path will end
      * 
-     * @returns {number[] | false} list of array to visit (in order) to get shortest path<br/>
-     *  false if specified node ids doesn't exists in current graph<br />
+     * @returns {number[] | false} list of array to visit (in order) to get shortest path&lt;br/>
+     *  false if specified node ids doesn't exists in current graph&lt;br />
      *  list will be empty if target and source node exists, but there's no path possible
      */
     getShortestPath(sourceNodeId, targettedNodeId) {
@@ -234,7 +262,7 @@ class Graph {
 
         /**@type {LightestWeightQueue} */
         const navigableNodes = new LightestWeightQueue(); // will store all nodes that we have discovered
-        // store the distance, infinite if not reachable ; number < 0 means already reached
+        // store the distance, infinite if not reachable ; number &lt; 0 means already reached
         const distances = new Array(this.#nodesEdges.length).fill(Infinity);
         /**@type {number[]} */
         const pathToTargetted = [sourceNodeId]; // store the shortest path to target from source
@@ -256,7 +284,7 @@ class Graph {
 
                 this.#nodesEdges[shortestReachableNode.element].forEach(({target, weight}) => {
                     const distanceWithSourceNode = (shortestReachableNode?.weight ?? 0) + weight;
-                    if(distances[target] !== "visited" && distanceWithSourceNode < distances[target]) {
+                    if(distances[target] !== "visited" &amp;&amp; distanceWithSourceNode &lt; distances[target]) {
                         distances[target] = distanceWithSourceNode;
                         navigableNodes.push(target, distances[target]);
                     }
@@ -266,9 +294,31 @@ class Graph {
 
         // just display distance from origin for now
         console.log("Vertex Distance from Source");
-        for (let i = 0; i < this.#nodesEdges.length; ++i) {
+        for (let i = 0; i &lt; this.#nodesEdges.length; ++i) {
             console.log(`${i}\t\t${distances[i] === Infinity ? "Infinity" : -distances[i]}`);
         }
         return pathToTargetted;
     }
-}
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Graph.html">Graph</a></li><li><a href="GraphBuilder.html">GraphBuilder</a></li><li><a href="LightestWeightQueue.html">LightestWeightQueue</a></li></ul><h3>Global</h3><ul><li><a href="global.html#loadStaticGraphClassTest">loadStaticGraphClassTest</a></li><li><a href="global.html#loadStaticGraphJsonTest">loadStaticGraphJsonTest</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sat Dec 30 2023 10:47:08 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
