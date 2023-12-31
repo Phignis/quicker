@@ -26,7 +26,8 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>// @ts-check
+            <pre class="prettyprint source linenums"><code>// to enable type checking with JSDoc (rather than full TypeScript)
+// @ts-check
 
 /**
  * Represent an ordered collection, where you can add and retreive in precise order elements.&lt;br />
@@ -36,7 +37,7 @@
 class LightestWeightQueue {
 
     /**
-     * encapsulated continuous array, storing all elements, with weight information
+     * encapsulated array, storing all elements, with weight information
      * 
      * @type {Array.&lt;{element: any, weight: number}>}
      * 
@@ -160,6 +161,7 @@ class Graph {
      */
     #exits;
 
+
     /** 
      * Construct a graph with specified number of nodes and no edges defined.
      * 
@@ -197,62 +199,43 @@ class Graph {
     }
 
     /**
-     * Set categories of ressources available for a given node
-     * 
-     * @param {number} nodeId id of the node which categories are for 
-     * @param {Array.&lt;String>} categoriesToSet categories of ressource available to add
-     * 
-     * @returns {boolean} true if categories where added, false if node does not exists in current graph
-     */
-    addCategoriesFor(nodeId, categoriesToSet) {
-        if(nodeId &lt; this.#nodesEdges.length) {
-            this.#nodesProductsCategories[nodeId] = this.#nodesProductsCategories[nodeId].concat(categoriesToSet);
-            return true;
-        }
-        return false;
-    }
 
-    /**
-     * add an entry to graph
+     * create the array containing, in order, all nodes to visit from a source node to a given targetted node
+     * could return false if at some point, path end up on a node without any predecessor.
      * 
-     * @param {number} entryNode id of the node where you can enter in the building
+     * @param {number} targettedNodeId the end node of the path
+     * @param {number[]} precedessorOfEachNodes the predecessing node of each node (given by index).
+     * -2 means it's the source node, -1 means no predecessor where found
      * 
-     * @returns {boolean} true if exit is added, false if entry node id given does not exists in graph
+     * @returns {number[] | boolean} the shortest path in a list, or false if shortest path is not possible
+     * 
+     * @access private
      */
-    addEntry(entryNode) {
-        if(entryNode &lt; this.#nodesEdges.length) {
-            this.#entries.push(entryNode);
-            return true;
+    #createShortestPath(targettedNodeId, precedessorOfEachNodes) {
+        const toReturn = [];
+        let currentNodeId = targettedNodeId;
+        while(currentNodeId !== -2) {
+            if(currentNodeId === -1) {
+                return false;
+            }
+            toReturn.push(currentNodeId);
+            currentNodeId = precedessorOfEachNodes[currentNodeId];
         }
-        return false;
-    }
-
-    /**
-     * add an exit to graph
-     * 
-     * @param {number} exitNode id of the node where you can exit in the building
-     * 
-     * @returns {boolean} true if exit is added, false if exit node id given does not exists in graph
-     */
-    addExit(exitNode) {
-        if(exitNode &lt; this.#nodesEdges.length) {
-            this.#exits.push(exitNode);
-            return true;
-        }
-        return false;
+        return toReturn.reverse();
     }
     
     /**
      * allows you to retreive a list of nodes to navigate from source to targetted node.
      * This list will represent the shortest path possible in the graph.&lt;br />&lt;br />
      * 
-     * Time complexity : O((v + e) log(n)) where v is the number of nodes, and e the number of edge
+     * Time complexity : O((v + e) log(v)) where v is the number of nodes, and e the number of edge
      * 
      * @param {number} sourceNodeId id of the node where the shortest path will start
      * @param {number} targettedNodeId id of the node where the shortest path will end
      * 
      * @returns {number[] | false} list of array to visit (in order) to get shortest path&lt;br/>
      *  false if specified node ids doesn't exists in current graph&lt;br />
+
      *  list will be empty if target and source node exists, but there's no path possible
      */
     getShortestPath(sourceNodeId, targettedNodeId) {
@@ -262,42 +245,49 @@ class Graph {
 
         /**@type {LightestWeightQueue} */
         const navigableNodes = new LightestWeightQueue(); // will store all nodes that we have discovered
+        
+        // TODO: see typed Array, more cache-friendly, array are arrays of object (references)
+
         // store the distance, infinite if not reachable ; number &lt; 0 means already reached
         const distances = new Array(this.#nodesEdges.length).fill(Infinity);
+
         /**@type {number[]} */
-        const pathToTargetted = [sourceNodeId]; // store the shortest path to target from source
+        const predecessorNode = new Array(this.#nodes.length).fill(-1);
 
         navigableNodes.push(sourceNodeId, 0);
         distances[sourceNodeId] = 0;
+        predecessorNode[sourceNodeId] = -2; // no parent
 
-        /**@type {{element : any, weight : number} | null} */
+        /** @type {{element : any, weight : number} | null} */
         let shortestReachableNode;
 
         while((shortestReachableNode = navigableNodes.pop()) !== null) { // while there's still navigable nodes
-
-            // to uncomment when you'll want to search from one path to another
-            // if(distances[indexNodeToVisit] !== "visited") {
-                // distances[indexNodeToVisit] = "visited"; // to not visit again edge
-
+            
             if(distances[shortestReachableNode.element] >= 0) {
+                // reached targetted node
+                if(shortestReachableNode.element === targettedNodeId) {
+                    // TODO: here, you have O(V) to construct, better if you do it on the go for time optimization
+                    return this.#createShortestPath(targettedNodeId, predecessorNode);
+                }
                 distances[shortestReachableNode.element] = -distances[shortestReachableNode.element]; // to not visit again edge
 
                 this.#nodesEdges[shortestReachableNode.element].forEach(({target, weight}) => {
                     const distanceWithSourceNode = (shortestReachableNode?.weight ?? 0) + weight;
                     if(distances[target] !== "visited" &amp;&amp; distanceWithSourceNode &lt; distances[target]) {
                         distances[target] = distanceWithSourceNode;
+                        predecessorNode[target] = shortestReachableNode?.element ?? -1; // new precedessor is the one we are visiting
                         navigableNodes.push(target, distances[target]);
                     }
                 });
             }
         }
-
         // just display distance from origin for now
         console.log("Vertex Distance from Source");
         for (let i = 0; i &lt; this.#nodesEdges.length; ++i) {
             console.log(`${i}\t\t${distances[i] === Infinity ? "Infinity" : -distances[i]}`);
         }
         return pathToTargetted;
+
     }
 }</code></pre>
         </article>
@@ -310,12 +300,14 @@ class Graph {
 
 <nav>
     <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Graph.html">Graph</a></li><li><a href="GraphBuilder.html">GraphBuilder</a></li><li><a href="LightestWeightQueue.html">LightestWeightQueue</a></li></ul><h3>Global</h3><ul><li><a href="global.html#loadStaticGraphClassTest">loadStaticGraphClassTest</a></li><li><a href="global.html#loadStaticGraphJsonTest">loadStaticGraphJsonTest</a></li></ul>
+
 </nav>
 
 <br class="clear">
 
 <footer>
     Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sat Dec 30 2023 10:47:08 GMT+0100 (heure normale d’Europe centrale)
+
 </footer>
 
 <script> prettyPrint(); </script>
