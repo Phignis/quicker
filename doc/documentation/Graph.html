@@ -146,7 +146,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="classes_Graph.js.html">classes/Graph.js</a>, <a href="classes_Graph.js.html#line105">line 105</a>
+        <a href="Graph.js.html">Graph.js</a>, <a href="Graph.js.html#line105">line 105</a>
     </li></ul></dd>
     
 
@@ -326,7 +326,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="classes_Graph.js.html">classes/Graph.js</a>, <a href="classes_Graph.js.html#line180">line 180</a>
+        <a href="Graph.js.html">Graph.js</a>, <a href="Graph.js.html#line192">line 192</a>
     </li></ul></dd>
     
 
@@ -485,7 +485,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="classes_Graph.js.html">classes/Graph.js</a>, <a href="classes_Graph.js.html#line195">line 195</a>
+        <a href="Graph.js.html">Graph.js</a>, <a href="Graph.js.html#line209">line 209</a>
     </li></ul></dd>
     
 
@@ -644,7 +644,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="classes_Graph.js.html">classes/Graph.js</a>, <a href="classes_Graph.js.html#line210">line 210</a>
+        <a href="Graph.js.html">Graph.js</a>, <a href="Graph.js.html#line226">line 226</a>
     </li></ul></dd>
     
 
@@ -849,7 +849,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="classes_Graph.js.html">classes/Graph.js</a>, <a href="classes_Graph.js.html#line164">line 164</a>
+        <a href="Graph.js.html">Graph.js</a>, <a href="Graph.js.html#line174">line 174</a>
     </li></ul></dd>
     
 
@@ -907,7 +907,169 @@
     
 
     
-    <h4 class="name" id="getShortestPath"><span class="type-signature"></span>getShortestPath<span class="signature">(sourceNodeId, targettedNodeId)</span><span class="type-signature"> &rarr; {Array.&lt;number>|false}</span></h4>
+    <h4 class="name" id="getOptimizedPathFor"><span class="type-signature"></span>getOptimizedPathFor<span class="signature">(wantedCategories)</span><span class="type-signature"> &rarr; {Array.&lt;number>|false}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Determine all nodes you have to visit from given categories you want, with one node of entry andone of exit included
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>wantedCategories</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">all categories of product needed</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Graph.js.html">Graph.js</a>, <a href="Graph.js.html#line414">line 414</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    list of array to visit (in order) to get shortest path<br/> false if specified node ids doesn't exists in current graph<br /> list will be empty if target and source node exists, but there's no path possible
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;number></span>
+|
+
+<span class="param-type">false</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="getShortestPath"><span class="type-signature"></span>getShortestPath<span class="signature">(sourceNodeId, targettedNodeId)</span><span class="type-signature"> &rarr; {Object|false}</span></h4>
     
 
     
@@ -1031,7 +1193,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="classes_Graph.js.html">classes/Graph.js</a>, <a href="classes_Graph.js.html#line256">line 256</a>
+        <a href="Graph.js.html">Graph.js</a>, <a href="Graph.js.html#line308">line 308</a>
     </li></ul></dd>
     
 
@@ -1071,7 +1233,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Array.&lt;number></span>
+<span class="param-type">Object</span>
 |
 
 <span class="param-type">false</span>
@@ -1102,13 +1264,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Graph.html">Graph</a></li><li><a href="GraphBuilder.html">GraphBuilder</a></li><li><a href="LightestWeightQueue.html">LightestWeightQueue</a></li></ul><h3>Global</h3><ul><li><a href="global.html#loadStaticGraphClassTest">loadStaticGraphClassTest</a></li><li><a href="global.html#loadStaticGraphJsonTest">loadStaticGraphJsonTest</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Graph.html">Graph</a></li><li><a href="GraphBuilder.html">GraphBuilder</a></li><li><a href="LightestWeightQueue.html">LightestWeightQueue</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Dec 31 2023 11:57:19 GMT+0100 (heure normale d’Europe centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Jan 01 2024 11:36:47 GMT+0100 (heure normale d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>
