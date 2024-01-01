@@ -1,10 +1,5 @@
 // @ts-check
 
-/**
- * return expected graph from defined graph in documentation, as an example
- * later, a API could be implemented to give back the json of choosen building
- * @returns {Object} expected graph, litteraly from JSON
- */
 const loadStaticGraphJsonTest = () => {
     return JSON.parse(`{
         "graph": {
@@ -273,10 +268,7 @@ const loadStaticGraphJsonTest = () => {
       }`)
 }
 
-/**
- * 
- * @returns {Graph} Graph expected from specified JSON in doc
- */
+
 const loadStaticGraphClassTest = () => {
   let toReturn = new Graph(7);
 
@@ -302,8 +294,22 @@ const loadStaticGraphClassTest = () => {
   return toReturn;
 }
 
+const parseGraphFromJsonGraphtest = () => {
+  return GraphBuilder.getInstanceForJsonGraph().createGraph(loadStaticGraphJsonTest());
+}
+
 const getShortestPath = (sourceNode, targetNode) => {
   const g = GraphBuilder.getInstanceForJsonGraph().createGraph(loadStaticGraphJsonTest());
-  console.log(g);
-  g?.getShortestPath(sourceNode, targetNode);
+  // @ts-ignore
+  let sourceId = Number(document.getElementById("sourceNodeId")?.value);
+  // @ts-ignore
+  let targetId = Number(document.getElementById("targettedNodeId")?.value);
+  console.log("shortest path from node " + sourceId + " to node " + targetId)
+  console.log(g?.getShortestPath(sourceId, targetId));
+}
+
+const getOptimizedPath = () =>  {
+  const catToHave = ["cleaning products", "butchery", "biscuits"];
+  const g = GraphBuilder.getInstanceForJsonGraph().createGraph(loadStaticGraphJsonTest());
+  console.log(g?.getOptimizedPathFor(catToHave));
 }

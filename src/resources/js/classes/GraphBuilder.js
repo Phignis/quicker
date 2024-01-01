@@ -16,6 +16,8 @@ class GraphBuilder {
      * 
      * @returns {GraphBuilder} a builder meant to parse object following JsonGraph standard,
      * [standard available here]{@link https://github.com/jsongraph/json-graph-specification/tree/master}
+     * 
+     * @access public
      */
     static getInstanceForJsonGraph() {
         return new GraphBuilderJsonGraph();
@@ -29,6 +31,8 @@ class GraphBuilder {
      * 
      * @returns {Graph | null } formatted Graph if all went good, null if given objectToParse does not respect
      * builder expected format
+     * 
+     * @access public
      */
     createGraph(objectToParse) {
         return null; // just to avoid type check error, but useless
