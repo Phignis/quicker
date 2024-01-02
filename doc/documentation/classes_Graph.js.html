@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: classes/Graph.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: classes/Graph.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// to enable type checking with JSDoc (rather than full TypeScript)
+// @ts-check
+
+/**
+ * Represent an ordered collection, where you can add and retreive in precise order elements.&lt;br />
+ * Items of the collection [will be retreived]{@link LightestWeightQueue#pop} by weight
+ * [specified when added]{@link LightestWeightQueue#push}.
+ */
+class LightestWeightQueue {
+
+    /**
+     * encapsulated array, storing all elements, with weight information
+     * 
+     * @type {Array.&lt;{element: any, weight: number}>}
+     * 
+     * @access private
+     */
+    #orderedElements; // private, no one should access this
+    
+    /**
+     * represent if elements in orderedElements are ordered or not
+     * 
+     * @type {boolean}
+     * 
+     * @access private
+     */
+    #ordered;
+
+    /** 
+     * Create an empty WeightQueue
+     * 
+     * @access public
+     */
+    constructor() {
+        this.#orderedElements = [];
+        this.#ordered = true;
+    }
+
+    /**
+     * Check if collection is empty or not
+     * 
+     * @returns {boolean} true if there is no elements in collection, else false
+     * 
+     * @access public
+     */
+    isEmpty() {
+        return this.#orderedElements.length === 0;
+    }
+
+    /**
+     * add an element in the collection, ordered by weight
+     * &lt;br />&lt;br />
+     * Time Complexity : O(1)
+     * 
+     * @param {any} elementName
+     * @param {number} weight weight of the element, used to order element, used when [retreiving them]{@link LightestWeightQueue#pop}
+     * 
+     * @access public
+     */
+    push(elementName, weight) {
+        this.#orderedElements.push({element : elementName, weight : weight});
+        this.#ordered = false; // set to false, to reorder it for next pop
+    }
+
+    
+    /**
+     * internal use only
+     * 
+     * used to order elements by weight in [the array]{@link LightestWeightQueue#orderedElements}.
+     * Elements with lightest weights should be at the end, to be retreived when [using pop]{@link LightestWeightQueue#pop}
+     * &lt;br />&lt;br />
+     * Time complexity : O(n log(n)) (dependant on browsersort algorithm implementation, worst case being 0(n²))
+     * 
+     * @access private
+     */
+    #sortQueue() {
+        this.#orderedElements.sort((item0, item1) => {
+            // if sort function return > 0 => item 1 before item 0
+            // more prioritary are the ones in last position of the collection
+            return item1.weight - item0.weight; // if > 0, then item 0 is more important than item1, and should be placed after item1
+        });
+        this.#ordered = true;
+    }
+
+    /**
+     * Retreive and give back the element with the lightest weight of the collection, removing it from the collection.
+     * &lt;br />&lt;br />
+     * Time complexity : 0(n log(n)) if sorting is needed, else O(1).
+     * 
+     * @returns {{element : any, weight : number} | null} The element removed with lightest weight possible, or null if the collection is empty
+     */
+    pop() {
+        if(!this.#ordered) {
+            this.#sortQueue();
+        }
+        // null means that absance of value is intended, stronger than undefined (from ECMAScript2015 https://262.ecma-international.org/6.0/#sec-terms-and-definitions-undefined-type)
+        let toReturn = this.#orderedElements.pop();
+        return (toReturn !== undefined) ? toReturn : null;
+    }
+}
+
+/**
+ * Represent a graph, meant to describe here shop architecture
+ */
+class Graph {
+
+    /**
+     * Store arrays representing edges of the current node (id given by index), 
+     * with the id of node to reach, and cost to reach it
+     * 
+     * @type {Array.&lt;Array.&lt;{target: number, weight: number}>>}
+     * 
+     * @access private
+     */
+    #nodesEdges;
+
+    /**
+     * Store arrays representing categories of product available in the current node (id given by index)
+     * 
+     * @type {Array.&lt;Array.&lt;string>>}
+     * 
+     * @access private
+     */
+    #nodesProductsCategories;
+
+    /**
+     * store nodes id which have entries
+     */
+    #entries;
+
+    /**
+     * store nodes id which have exists
+     */
+    #exits;
+
+    /** 
+     * Construct a graph with specified number of nodes and no edges defined.
+     * 
+     * @param {number} nbNodesInGraph 
+     */
+    constructor(nbNodesInGraph) {
+        this.#nodesEdges = []; // index represent the node number, it will contain edges
+        this.#nodesProductsCategories = [];
+        this.#entries = [];
+        this.#exits = [];
+        for(let i = 0; i &lt; nbNodesInGraph; ++i) {
+            this.#nodesEdges[i] = []; // ready to receive edges for the node
+            this.#nodesProductsCategories[i] = [];
+        }
+    }
+
+    /**
+     * Add edge for source node, if possible, with a given target node and a weight
+     * Give back information if edge was added or not
+     * 
+     * @param {number} sourceNodeId id of the source node, from where directed edge is starting
+     * @param {number} targettedNodeId id of the target node, where directed edge is ending
+     * @param {number} weight cost to go to target node using the edge
+     * @returns {boolean} true if edge was added, else false, for example if you try to add edge to 
+     * non-existing edge, which are specified [in the constructor]{@link WeightQueue#constructor}
+     * 
+     * @access public
+     */
+    addNewEdge(sourceNodeId, targettedNodeId, weight) {
+        if(sourceNodeId >= this.#nodesEdges.length) {
+            return false;
+        }
+        this.#nodesEdges[sourceNodeId].push({target : targettedNodeId, weight : weight});
+        return true;
+    }
+
+    /**
+     * Set categories of ressources available for a given node
+     * 
+     * @param {number} nodeId id of the node which categories are for 
+     * @param {Array.&lt;String>} categoriesToSet categories of ressource available to add
+     * 
+     * @returns {boolean} true if categories where added, false if node does not exists in current graph
+     */
+    addCategoriesFor(nodeId, categoriesToSet) {
+        if(nodeId &lt; this.#nodesEdges.length) {
+            this.#nodesProductsCategories[nodeId] = this.#nodesProductsCategories[nodeId].concat(categoriesToSet);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * add an entry to graph
+     * 
+     * @param {number} entryNode id of the node where you can enter in the building
+     * 
+     * @returns {boolean} true if exit is added, false if entry node id given does not exists in graph
+     */
+    addEntry(entryNode) {
+        if(entryNode &lt; this.#nodesEdges.length) {
+            this.#entries.push(entryNode);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * add an exit to graph
+     * 
+     * @param {number} exitNode id of the node where you can exit in the building
+     * 
+     * @returns {boolean} true if exit is added, false if exit node id given does not exists in graph
+     */
+    addExit(exitNode) {
+        if(exitNode &lt; this.#nodesEdges.length) {
+            this.#exits.push(exitNode);
+            return true;
+        }
+        return false;
+    }
+  
+    /**
+     * create the array containing, in order, all nodes to visit from a source node to a given targetted node
+     * could return false if at some point, path end up on a node without any predecessor.
+     * 
+     * @param {number} targettedNodeId the end node of the path
+     * @param {number[]} precedessorOfEachNodes the predecessing node of each node (given by index).
+     * -2 means it's the source node, -1 means no predecessor where found
+     * 
+     * @returns {number[] | false} the shortest path in a list, or false if shortest path is not possible
+     * 
+     * @access private
+     */
+    #createShortestPath(targettedNodeId, precedessorOfEachNodes) {
+        const toReturn = [];
+        let currentNodeId = targettedNodeId;
+        while(currentNodeId !== -2) {
+            if(currentNodeId === -1) {
+                return false;
+            }
+            toReturn.push(currentNodeId);
+            currentNodeId = precedessorOfEachNodes[currentNodeId];
+        }
+        return toReturn.reverse();
+    }
+    
+    /**
+     * allows you to retreive a list of nodes to navigate from source to targetted node.
+     * This list will represent the shortest path possible in the graph.
+     * &lt;br />&lt;br />
+     * Time complexity : O((v + e) log(v)) where v is the number of nodes, and e the number of edge
+     * 
+     * @param {number} sourceNodeId id of the node where the shortest path will start
+     * @param {number} targettedNodeId id of the node where the shortest path will end
+     * 
+     * @returns {number[] | false} list of array to visit (in order) to get shortest path&lt;br/>
+     *  false if specified node ids doesn't exists in current graph&lt;br />
+     *  list will be empty if target and source node exists, but there's no path possible
+     */
+    getShortestPath(sourceNodeId, targettedNodeId) {
+        if(sourceNodeId >= this.#nodesEdges.length || targettedNodeId >= this.#nodesEdges.length) {
+            return false;
+        }
+
+        /**@type {LightestWeightQueue} */
+        const navigableNodes = new LightestWeightQueue(); // will store all nodes that we have discovered
+        
+        // TODO: see typed Array, more cache-friendly, array are arrays of object (references)
+
+        // store the distance, infinite if not reachable ; number &lt; 0 means already reached
+        const distances = new Array(this.#nodesEdges.length).fill(Infinity);
+      
+        // store the predecessor of each nodes, when discovered
+        /**@type {number[]} */
+        const predecessorNode = new Array(this.#nodesEdges.length).fill(-1);
+
+        navigableNodes.push(sourceNodeId, 0);
+        distances[sourceNodeId] = 0;
+        predecessorNode[sourceNodeId] = -2; // no parent
+
+        /** @type {{element : any, weight : number} | null} */
+        let shortestReachableNode;
+
+        while((shortestReachableNode = navigableNodes.pop()) !== null) { // while there's still navigable nodes
+            
+            if(distances[shortestReachableNode.element] >= 0) {
+                // reached targetted node
+                if(shortestReachableNode.element === targettedNodeId) {
+                    // TODO: here, you have O(V) to construct, better if you do it on the go for time optimization
+                    return this.#createShortestPath(targettedNodeId, predecessorNode);
+                }
+                distances[shortestReachableNode.element] = -distances[shortestReachableNode.element]; // to not visit again edge
+
+                this.#nodesEdges[shortestReachableNode.element].forEach(({target, weight}) => {
+                    const distanceWithSourceNode = (shortestReachableNode?.weight ?? 0) + weight;
+                    if(distances[target] !== "visited" &amp;&amp; distanceWithSourceNode &lt; distances[target]) {
+                        distances[target] = distanceWithSourceNode;
+                        predecessorNode[target] = shortestReachableNode?.element ?? -1; // new precedessor is the one we are visiting
+                        navigableNodes.push(target, distances[target]);
+                    }
+                });
+            }
+        }
+      
+        // if we reach end of navigables nodes, we didn't found the targetted node and explored the whole graph from source node
+        return [];
+    }
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Graph.html">Graph</a></li><li><a href="GraphBuilder.html">GraphBuilder</a></li><li><a href="LightestWeightQueue.html">LightestWeightQueue</a></li></ul><h3>Global</h3><ul><li><a href="global.html#loadStaticGraphClassTest">loadStaticGraphClassTest</a></li><li><a href="global.html#loadStaticGraphJsonTest">loadStaticGraphJsonTest</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Dec 31 2023 11:57:19 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

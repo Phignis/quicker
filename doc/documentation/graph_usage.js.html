@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: graph_usage.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: graph_usage.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// @ts-check
+
+/**
+ * return expected graph from defined graph in documentation, as an example
+ * later, a API could be implemented to give back the json of choosen building
+ * @returns {Object} expected graph, litteraly from JSON
+ */
+const loadStaticGraphJsonTest = () => {
+    return JSON.parse(`{
+        "graph": {
+          "directed": true,
+          "type": "graph type",
+          "label": "grocery_image_example graph",
+          "metadata" : {
+            "targetUrl" : "http://url.to.gather.graph"
+          },
+          "nodes": {
+            "0": {
+              "label": "entry alley",
+              "metadata": {
+                "type": "node type",
+                "availableProducts" : [
+                  "cleaning products"
+                ],
+                "entry": true,
+                "exit": true
+              }
+            },
+            "1": {
+              "label": "connecting alley",
+              "metadata": {
+                "type": "node type",
+                "availableProducts" : [
+                ]
+              }
+            },
+            "2" : {
+              "label": "promotions alley",
+              "metadata": {
+                "type": "node type",
+                "availableProducts" : [
+                  "biscuits",
+                  "promotions",
+                  "charcuterie",
+                  "cheese"
+                ]
+              }
+            },
+            "3" : {
+              "label": "leftmost alley",
+              "metadata": {
+                "type": "node type",
+                "availableProducts" : [
+                  "charcuterie",
+                  "cheese"
+                ]
+              }
+            },
+            "4" : {
+              "label": "central alley",
+              "metadata": {
+                "type": "node type",
+                "availableProducts" : [
+                  "games",
+                  "biscuits",
+                  "cleaning products"
+                ]
+              }
+            },
+            "5" : {
+              "label": "rightmost alley",
+              "metadata": {
+                "type": "node type",
+                "availableProducts" : [
+                  "fish shop"
+                ]
+              }
+            },
+            "6" : {
+              "label": "back alley",
+              "metadata": {
+                "type": "node type",
+                "availableProducts" : [
+                  "butchery",
+                  "fish shop"
+                ]
+              }
+            }
+          },
+          "edges": [
+            {
+              "relation": "edge relationship",
+              "source": "0",
+              "target": "1",
+              "directed": true,
+              "metadata": {
+                "direction" : "right",
+                "weight" : 3
+              }
+            },
+            {
+              "relation": "edge relationship",
+              "source": "0",
+              "target": "2",
+              "directed": true,
+              "metadata": {
+                "direction" : "straight on",
+                "weight" : 3
+              }
+            },
+            {
+              "relation": "edge relationship",
+              "source": "0",
+              "target": "5",
+              "directed": true,
+              "metadata": {
+                "direction" : "left",
+                "weight" : 3
+              }
+            },
+            {
+              "relation": "edge relationship",
+              "source": "1",
+              "target": "0",
+              "directed": true,
+              "metadata": {
+                "direction" : "straight on",
+                "weight" : 1
+              }
+            },
+            {
+              "relation": "edge relationship",
+              "source": "1",
+              "target": "4",
+              "directed": true,
+              "metadata": {
+                "direction" : "straight on",
+                "weight" : 1
+              }
+            },
+            {
+              "relation": "edge relationship",
+              "source": "2",
+              "target": "0",
+              "directed": true,
+              "metadata": {
+                "direction" : "straight on",
+                "weight" : 2
+              }
+            },
+            {
+              "relation": "edge relationship",
+              "source": "2",
+              "target": "3",
+              "directed": true,
+              "metadata": {
+                "direction" : "right",
+                "weight" : 2
+              }
+            },
+            {
+              "relation": "edge relationship",
+              "source": "3",
+              "target": "2",
+              "directed": true,
+              "metadata": {
+                "direction" : "left",
+                "weight" : 3
+              }
+            },
+            {
+              "relation": "edge relationship",
+              "source": "3",
+              "target": "4",
+              "directed": true,
+              "metadata": {
+                "direction" : "left",
+                "weight" : 2
+              }
+            },
+            {
+              "relation": "edge relationship",
+              "source": "3",
+              "target": "6",
+              "directed": true,
+              "metadata": {
+                "direction" : "left",
+                "weight" : 3
+              }
+            },
+            {
+              "relation": "edge relationship",
+              "source": "4",
+              "target": "1",
+              "directed": true,
+              "metadata": {
+                "direction" : "right",
+                "weight" : 3
+              }
+            },
+            {
+              "relation": "edge relationship",
+              "source": "4",
+              "target": "3",
+              "directed": true,
+              "metadata": {
+                "direction" : "straight on",
+                "weight" : 4
+              }
+            },
+            {
+              "relation": "edge relationship",
+              "source": "4",
+              "target": "5",
+              "directed": true,
+              "metadata": {
+                "direction" : "straight on",
+                "weight" : 4
+              }
+            },
+            {
+              "relation": "edge relationship",
+              "source": "5",
+              "target": "0",
+              "directed": true,
+              "metadata": {
+                "direction" : "right",
+                "weight" : 3
+              }
+            },
+            {
+              "relation": "edge relationship",
+              "source": "5",
+              "target": "4",
+              "directed": true,
+              "metadata": {
+                "direction" : "right",
+                "weight" : 2
+              }
+            },
+            {
+              "relation": "edge relationship",
+              "source": "5",
+              "target": "6",
+              "directed": true,
+              "metadata": {
+                "direction" : "left",
+                "weight" : 3
+              }
+            },
+            {
+              "relation": "edge relationship",
+              "source": "6",
+              "target": "3",
+              "directed": true,
+              "metadata": {
+                "direction" : "left",
+                "weight" : 5
+              }
+            },
+            {
+              "relation": "edge relationship",
+              "source": "6",
+              "target": "5",
+              "directed": true,
+              "metadata": {
+                "direction" : "right",
+                "weight" : 5
+              }
+            }
+          ]
+        }
+      }`)
+}
+
+/**
+ * 
+ * @returns {Graph} Graph expected from specified JSON in doc
+ */
+const loadStaticGraphClassTest = () => {
+  let toReturn = new Graph(7);
+
+  toReturn.addNewEdge(0, 1, 3);
+  toReturn.addNewEdge(0, 2, 3);
+  toReturn.addNewEdge(0, 5, 3);
+  toReturn.addNewEdge(1, 0, 1);
+  toReturn.addNewEdge(1, 4, 1);
+  toReturn.addNewEdge(2, 0, 2);
+  toReturn.addNewEdge(2, 3, 2);
+  toReturn.addNewEdge(3, 2, 3);
+  toReturn.addNewEdge(3, 4, 2);
+  toReturn.addNewEdge(3, 6, 3);
+  toReturn.addNewEdge(4, 1, 3);
+  toReturn.addNewEdge(4, 3, 4);
+  toReturn.addNewEdge(4, 5, 4);
+  toReturn.addNewEdge(5, 0, 3);
+  toReturn.addNewEdge(5, 4, 2);
+  toReturn.addNewEdge(5, 6, 3);
+  toReturn.addNewEdge(6, 3, 5);
+  toReturn.addNewEdge(6, 5, 5);
+
+  return toReturn;
+}
+
+const parseGraphFromJsonGraphtest = () => {
+  console.log(GraphBuilder.getInstanceForJsonGraph().createGraph(loadStaticGraphJsonTest()));
+}
+
+const getShortestPath = (sourceNode, targetNode) => {
+  const g = GraphBuilder.getInstanceForJsonGraph().createGraph(loadStaticGraphJsonTest());
+  // @ts-ignore
+  let sourceId = Number(document.getElementById("sourceNodeId")?.value);
+  // @ts-ignore
+  let targetId = Number(document.getElementById("targettedNodeId")?.value);
+  console.log("shortest path from node " + sourceId + " to node " + targetId)
+  console.log(g?.getShortestPath(sourceId, targetId));
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Graph.html">Graph</a></li><li><a href="GraphBuilder.html">GraphBuilder</a></li><li><a href="LightestWeightQueue.html">LightestWeightQueue</a></li></ul><h3>Global</h3><ul><li><a href="global.html#loadStaticGraphClassTest">loadStaticGraphClassTest</a></li><li><a href="global.html#loadStaticGraphJsonTest">loadStaticGraphJsonTest</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Dec 31 2023 11:57:19 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

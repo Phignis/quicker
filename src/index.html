@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html lang="fr">
+    <head>
+        <title>Test page</title>
+    </head>
+    <body style="display: flex; flex-direction: column; align-items: center;">
+        <form style="display: flex; flex-direction: row; align-items: center;">
+            <div style="display: flex; flex-direction: column; align-items: center">
+                <label for="sourceNodeId">Source node</label>
+                <input type="number" max="6" value="0" id="sourceNodeId" name="sourceNodeId">
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center">
+                <label for="targettedNodeId">Targetted Node</label>
+                <input type="number" max="6" value="1" id="targettedNodeId" name="targettedNodeId">
+            </div>
+            
+        </form>
+        <div style="display: flex; flex-direction: row; align-items: center;">
+            <button type="button" onClick="console.log(loadStaticGraphJsonTest())">Get JSON representation of the graph!</button>
+            <button type="button" onClick="console.log(loadStaticGraphClassTest())">JS object representation of graph!</button>
+            <button type="button" onClick="console.log(parseGraphFromJsonGraphtest())">parse json from first button!</button>
+            <button type="button" onClick="getShortestPath(0, 6)">Get shortest path of previous graph!</button>
+            <button type="button" onClick="getOptimizedPath()">Get opt path for Cleaning products and Butchery!</button>
+        </div>
+        
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <t3>Example of graph from where example are run</t3>
+            <img src="resources/images/grocery_image_example.png"/>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <t3>Example of graph from where example are run</t3>
+            <img src="resources/images/grocery_graph_example.png"/>
+        </div>
+        <script src="./resources/js/classes/GraphBuilder.js"></script>
+        <script src="./resources/js/classes/Graph.js"></script>
+        <script src="./resources/js/graph_usage.js"></script>
+    </body>
+</html>
