@@ -1,0 +1,22 @@
+.seReCard {
+  
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    margin: 1rem 0.5rem;
+  }
+.seReCard:hover{
+    
+    cursor:pointer;
+    transform: scale(1.03);
+    transition: all 0.5s ease;
+ }
+
+.seReLABEL{
+    display: block;
+    width: 98%;
+    text-align: right;
+    color: #007AF3;
+    padding-top: 1rem;
+    
+}
+
