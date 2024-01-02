@@ -7,7 +7,7 @@ function Navbarr() {
   return (
     <header className={classes.header}>
       <Navbar sticky="top">
-        <Container fluid>
+        <Container fluid className="justify-content-center">
           <Nav className="ms-center">
             <Row className="justify-content-center align-items-center">
               <Col xs="auto"> 

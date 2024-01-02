@@ -31,12 +31,12 @@ function LoginPage(){
               <Form  onSubmit={SubmitHandler}>
               <FormGroup >
                    <FormLabel htmlFor="ad">Email </FormLabel>
-                   <FormControl type="email" id="ad" placeHolder="address" autoComplete="off" required onChange={(e) =>setEmailValue(e.target.value)}/>
+                   <FormControl type="email" id="ad" placeholder="address" autoComplete="off" required onChange={(e) =>setEmailValue(e.target.value)}/>
                </FormGroup>
 
                <FormGroup >
                    <FormLabel htmlFor="pwd">Password </FormLabel>
-                   <FormControl type="password" id="pwd" placeHolder="password" required onChange={(e) =>setPwdValue(e.target.value)}/>
+                   <FormControl type="password" id="pwd" placeholder="password" required onChange={(e) =>setPwdValue(e.target.value)}/>
                </FormGroup>
 
                

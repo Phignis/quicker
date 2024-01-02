@@ -5,10 +5,10 @@ gsap.registerPlugin(MotionPathPlugin);
 
 
 function ShopMap(props) {
-    const optimalpath = [0, 2, 3, 4,7,6,1, 0];
+    const optimalpath = [0, 2, 3, 4, 7, 6, 1, 0];
     const svgRef = useRef(null);
-    const [adjustedList, setAdjustedList]=useState([]);
-    const [drawcheck, setDrawcheck]=useState(false);
+    const [adjustedList, setAdjustedList] = useState([]);
+    const [drawcheck, setDrawcheck] = useState(false);
 
     const nodes = [
         {id:0 ,label:"main entrance door", x: 1185, y: 795 },
@@ -23,7 +23,7 @@ function ShopMap(props) {
         {id:47 ,label:"47", x: 170, y: 150 },
         {id:16 ,label:"16", x: 1580, y: 570 },
         {id:34 ,label:"34", x: 170, y: 570 },
-      ];
+    ];
 
   useEffect(() => { 
    
@@ -86,7 +86,7 @@ function ShopMap(props) {
       
               
           nodes.forEach(({ x, y }) => {
-            createSVG('circle', svgRef.current, { cx: x, cy: y, r: 5  });//change it to { cx: x, cy: y, r: 5,fill:'blue'  } to see the actual points 
+            createSVG('circle', svgRef.current, { cx: x, cy: y, r: 5,fill:'blue'  });
           });
         setAdjustedList((prevAdjustedList) => {
             let updatedList = [...prevAdjustedList];

@@ -8,7 +8,7 @@ const SvgTestsvg = (props: SVGProps<SVGSVGElement>) => (
     height="1em"
     fill="none"
     viewBox="0 0 1734 855"
-   
+    {...props}
   >
     <path fill="#F5F5F5" d="M0 0h1734v855H0z" />
     <path fill="url(#testsvg_svg__a)" d="M0 0h1734v855H0z" />

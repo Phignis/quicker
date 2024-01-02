@@ -61,7 +61,7 @@ function CoursesPage(){
               picture={item.picture}
               onDelete={handleItemDelete}
             />
-          ))}
+          ))};
         </div>
       )}
     </div>
