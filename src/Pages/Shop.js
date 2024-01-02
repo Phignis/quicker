@@ -1,3 +1,5 @@
+//@ts-check
+
 import React, { useState } from "react";
 import Navbarr from "../Components/Navbar";
 import SearchBar from "../Components/SearchBar";
@@ -46,7 +48,7 @@ function ShopPage() {
   
   const [selectedShop, setSelectedShop] = useState(null);
   const [pathFound, setPathFound] = useState(false);
-  const [readycheck,setReadyCheck] = useState(false);
+  const [readycheck, setReadyCheck] = useState(false);
   const [optimalpath, setOptimalPath] = useState([]);
 
   const handleShopSelect = (shop) => {
@@ -56,10 +58,15 @@ function ShopPage() {
 
   const handleFindPath = () => {
     setPathFound(true);
-    const catToHave = ["cleaning products", "butchery", "biscuits"];
+    let dynamicCatToHave = [];
+    dummyShoppingItems.forEach(item => {
+      dynamicCatToHave.push(item.category)
+    });
+    dynamicCatToHave = [...new Set(dynamicCatToHave)]; // guarantee unicity
     const g = GraphBuilder.getInstanceForJsonGraph().createGraph(loadStaticGraphJsonTest());
-    console.log(g?.getOptimizedPathFor(catToHave));
-    setOptimalPath(g?.getOptimizedPathFor(catToHave));
+    console.log(g?.getOptimizedPathFor(dynamicCatToHave));
+    // @ts-ignore
+    setOptimalPath(g?.getOptimizedPathFor(dynamicCatToHave));
     setReadyCheck(true);
 
   };
@@ -76,6 +83,7 @@ function ShopPage() {
 
       {selectedShop && (
         <img
+        // @ts-ignore
         src={pathFound ? selectedShop.mapAfterModification : selectedShop.mapBeforeModification}
           
           
