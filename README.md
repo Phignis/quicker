@@ -23,7 +23,11 @@
 > If you would really like to install the PWA on your mobile, you first have to self-certificate the desktop,
 > and the method is not described here. Once you can connect to the website in HTTPS, you should be able to install.
 
-## What can I do?
+## What can you do?
+>In order to connect, you can provide any email and password, there is currently any checking.<br /> <br/>
 > Not so much for now, the application is mostly a POC. Even if the whole dijkstra algorithm is meant
 > to be adapted to categories of products that you have, the grocery list is not editable for now.<br />
-> You can click on the "Find Path" button, which will retreive all categories of products in the list, which is not editable.
+> You can click on the "Find Path" button, which will retreive all categories of products in the list, which is not editable.<br />
+> You can go into [this file](./src/Pages/Shop.js), to edit the `dummyShoppingItems`. Try removing
+> the chicken from the list, and you'll see the path modified when pressing again the button find path
+> (rebuilding app is needed, or hot reload dev environment by running npm start instead of run build and the following commands).

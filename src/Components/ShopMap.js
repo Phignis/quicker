@@ -11,18 +11,13 @@ function ShopMap(props) {
     const [drawcheck, setDrawcheck] = useState(false);
 
     const nodes = [
-        {id:0 ,label:"main entrance door", x: 1185, y: 795 },
-        {id:1 ,label:"entry alley", x: 1250, y: 650 },
-        {id:2 ,label:"connecting alley", x: 867, y: 500 },
-        {id:3 ,label:"romotions alley", x: 550, y: 570 },
-        {id:4 ,label:"leftmost alley", x: 170, y: 370 },
-        {id:5 ,label:"central alley", x: 867, y: 370},
-        {id:6 ,label:"rightmost alley", x: 1580, y: 370 },
-        {id:7 ,label:"back alley", x: 867, y: 150 },
-        {id:67 ,label:"67", x: 1580, y: 150 },
-        {id:47 ,label:"47", x: 170, y: 150 },
-        {id:16 ,label:"16", x: 1580, y: 570 },
-        {id:34 ,label:"34", x: 170, y: 570 },
+        {id:0 ,label:"entry alley", x: 1185, y: 795 },
+        {id:1 ,label:"connecting alley", x: 867, y: 500 },
+        {id:2 ,label:"romotions alley", x: 550, y: 570 },
+        {id:3 ,label:"leftmost alley", x: 170, y: 370 },
+        {id:4 ,label:"central alley", x: 867, y: 370},
+        {id:5 ,label:"rightmost alley", x: 1580, y: 370 },
+        {id:6 ,label:"back alley", x: 867, y: 150 },
     ];
 
   useEffect(() => { 
