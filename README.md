@@ -1,70 +1,29 @@
-# Getting Started with Create React App
+# Quicker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Technologie used
+> * node.js version 18.15.0
+> * npm 9.6.3
 
-## Available Scripts
+## Launch me !
+> 1.  npm install
+> 2.  npm run build
+> 3.  npm install -g serve (if not already installed)
+> 4.  Set-ExecutionPolicy RemoteSigned
+> 5.  serve -s build
 
-In the project directory, you can run:
+## Install PWA
+### Desktop
+> If you are on the localhost address provided, you can install the PWA, even if it's not meant to be.
+> PWA should be available throught HTTPS only, but localhost is also considered as secure.<br />
+> On browser, go for responsive display, and mobile type (F12, then activate responsive display)
 
-### `npm start`
+### Mobile
+> You first have to find out the IP address of the hosting desktop throught network. Once you found the IP adress,
+> type it in the mobile browser, with the port provided when launching app with serve.<br />
+> If you would really like to install the PWA on your mobile, you first have to self-certificate the desktop,
+> and the method is not described here. Once you can connect to the website in HTTPS, you should be able to install.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## What can I do?
+> Not so much for now, the application is mostly a POC. Even if the whole dijkstra algorithm is meant
+> to be adapted to categories of products that you have, the grocery list is not editable for now.<br />
+> You can click on the "Find Path" button, which will retreive all categories of products in the list, which is not editable.
