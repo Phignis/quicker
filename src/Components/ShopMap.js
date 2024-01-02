@@ -86,7 +86,7 @@ function ShopMap(props) {
       
               
           nodes.forEach(({ x, y }) => {
-            createSVG('circle', svgRef.current, { cx: x, cy: y, r: 5,fill:'blue'  });
+            createSVG('circle', svgRef.current, { cx: x, cy: y, r: 5  });//change it to { cx: x, cy: y, r: 5,fill:'blue'  } to see the actual points 
           });
         setAdjustedList((prevAdjustedList) => {
             let updatedList = [...prevAdjustedList];

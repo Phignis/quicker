@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Card, Button} from "react-bootstrap";
+import { Col,Card, Button} from "react-bootstrap";
 import classes from "../Components/ItemCardC.module.css";
 
 function ItemCardC(props){

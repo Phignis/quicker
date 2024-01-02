@@ -69,5 +69,4 @@ class GraphBuilderJsonGraph extends GraphBuilder {
         return toReturn;
     }
 }
-
 export default GraphBuilder;

@@ -457,5 +457,4 @@ class Graph {
     }
     //#endregion
 }
-
 export default Graph;

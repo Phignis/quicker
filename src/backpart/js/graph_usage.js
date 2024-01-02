@@ -1,8 +1,6 @@
 // @ts-check
-
 import Graph from "../js/classes/Graph";
 import GraphBuilder from "../js/classes/GraphBuilder";
-
 const loadStaticGraphJsonTest = () => {
     return JSON.parse(`{
         "graph": {

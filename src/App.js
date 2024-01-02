@@ -1,10 +1,10 @@
-import {Route, BrowserRouter as Router, Routes} from 'react-router-dom';
+import {Route, BrowserRouter as Router ,Routes} from 'react-router-dom';
 import LoginPage from './Pages/Login';
 import ShopPage from './Pages/Shop';
 import SignupPage from './Pages/Signup';
 import CoursesPage from './Pages/Courses';
 
-//import Navbar from './Components/Navbar';
+//import Navbarr from './Components/Navbar';
 function App() {
   return (
     <Router>

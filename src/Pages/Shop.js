@@ -75,6 +75,7 @@ function ShopPage() {
     console.log(g?.getOptimizedPathFor(catToHave));
     setOptimalPath(g?.getOptimizedPathFor(catToHave));
     setReadyCheck(true);
+
   };
 
   return (
@@ -82,17 +83,14 @@ function ShopPage() {
       <Navbarr />
       
       <SearchBar  data={dummyShops} onSelectShop={handleShopSelect} />
-      <ShopMap optimalpath={optimalpath} ready={readycheck}/>
+      
 
       <Button variant="success" onClick={handleFindPath} disabled={pathFound}> Find path</Button>
       
 
       {selectedShop && (
-        <img
-        src={pathFound ? selectedShop.mapAfterModification : selectedShop.mapBeforeModification}
-          
-          
-        />
+        
+        <ShopMap optimalpath={optimalpath} ready={readycheck}/>
       )}
       <ItemFooter shoppingItems={dummyShoppingItems}   />
     </div>
