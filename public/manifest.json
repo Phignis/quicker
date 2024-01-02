@@ -1,25 +1,42 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "name": "Quicker groceries",
+  "short_name": "Quicker",
+
+  "theme_color": "#b0e8d9",
+  "background_color": "#ffffff",
+
+  "display": "standalone",
+  "orientation": "portrait",
+
+  "scope": "/",
+  "start_url": "/",
+
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "app_icon512_maskable.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
     },
     {
-      "src": "logo192.png",
+      "src": "app_icon192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "app_icon256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "app_icon384.png",
+      "type": "image/png",
+      "sizes": "384x384"
+    },
+    {
+      "src": "app_icon512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  ]
 }

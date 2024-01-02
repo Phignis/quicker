@@ -280,7 +280,7 @@ class Graph {
     #createShortestPath(targettedNodeId, precedessorOfEachNodes) {
         const toReturn = [];
         let currentNodeId = targettedNodeId;
-        while(currentNodeId !== -2) {
+        while(precedessorOfEachNodes[currentNodeId] !== -2) {
             if(currentNodeId === -1) {
                 return false;
             }
@@ -299,7 +299,7 @@ class Graph {
      * @param {number} sourceNodeId id of the node where the shortest path will start
      * @param {number} targettedNodeId id of the node where the shortest path will end
      * 
-     * @returns {{path : number[], cost : number} | false} list of array to visit (in order) to get shortest path<br/>
+     * @returns {{path : number[], cost : number} | false} list of array to visit (in order) to get shortest path, excluding starting node<br/>
      *  false if specified node ids doesn't exists in current graph<br />
      *  list will be empty if target and source node exists, but there's no path possible
      * 
@@ -436,7 +436,7 @@ class Graph {
             possibility.unshift(entry);
             possibility.push(exit);
             let currentCost = 0;
-            let totalPath = [];
+            let totalPath = [possibility[0]];
             for(let i = 1; i < possibility.length; ++i) {
                 let data = this.getShortestPath(possibility[i - 1], possibility[i]);
                 if(data === false || data.path.length === 0) { // nodes are not reachable
@@ -457,4 +457,5 @@ class Graph {
     }
     //#endregion
 }
+
 export default Graph;

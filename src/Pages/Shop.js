@@ -25,9 +25,10 @@ function ShopPage() {
         { id: 3, name: "Apples", pricePerUnit: 2.49, picture: "path/to/apples.jpg", store: "Carrefour", category: "promotions" },
         { id: 4, name: "Bread", pricePerUnit: 1.89, picture: "path/to/bread.jpg", store: "Carrefour", category: "biscuits" },
         { id: 6, name: "Pasta", pricePerUnit: 1.99, picture: "path/to/pasta.jpg", store: "Carrefour", category: "biscuits" },
-        { id: 7, name: "Chicken", pricePerUnit: 8.99, picture: "path/to/chicken.jpg", store: "Carrefour", category: "butchery" },
-        { id: 8, name: "Yogurt", pricePerUnit: 1.79, picture: "path/to/yogurt.jpg", store: "Carrefour", category: "cheese" },
-        { id: 9, name: "Cleaning agent", pricePerUnit: 5.49, picture: "path/to/cleaning_agent.jpg", store: "Carrefour", category: "cleaning products" },
+        { id: 7, name: "Yogurt", pricePerUnit: 1.79, picture: "path/to/yogurt.jpg", store: "Carrefour", category: "cheese" },
+        { id: 8, name: "Cleaning agent", pricePerUnit: 5.49, picture: "path/to/cleaning_agent.jpg", store: "Carrefour", category: "cleaning products" },
+        { id: 9, name: "tuna", pricePerUnit: 19.49, picture: "path/to/tuna.jpg", store: "Carrefour", category: "fish shop" },
+        { id: 10, name: "Chicken", pricePerUnit: 8.99, picture: "path/to/chicken.jpg", store: "Carrefour", category: "butchery" },
       ];
   const dummyShops = [
     {
